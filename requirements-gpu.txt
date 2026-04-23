@@ -1,0 +1,24 @@
+# GPU environment aligned with the validated `tower-vision` Conda env.
+# Assumes Python 3.10 and an NVIDIA driver compatible with CUDA 12.6.
+--index-url https://download.pytorch.org/whl/cu126
+--extra-index-url https://pypi.org/simple
+
+-e .
+
+accelerate==1.13.0
+anomalib==2.2.0
+matplotlib==3.10.8
+numpy==2.2.6
+pandas==2.3.3
+Pillow==12.2.0
+pycocotools==2.0.11
+PyYAML==6.0.3
+pytest==9.0.3
+pytest-cov>=5.0.0,<6
+rich==14.3.4
+ruff>=0.6.0,<1
+torch==2.7.1
+torchvision==0.22.1
+transformers==4.57.6
+ultralytics==8.4.38
+yolox @ git+https://github.com/Megvii-BaseDetection/YOLOX.git@6ddff4824372906469a7fae2dc3206c7aa4bbaee

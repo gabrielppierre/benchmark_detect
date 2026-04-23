@@ -84,6 +84,16 @@ Para instalar a stack de benchmark via `pip` no ambiente já ativo:
 python -m pip install -e .[dev,benchmark]
 ```
 
+Alternativa para preparar o ambiente com `pip` e suporte a GPU NVIDIA, alinhada ao ambiente `tower-vision` validado neste repositório:
+
+```bash
+conda create -n tower-vision python=3.10 pip gxx_linux-64 -y
+conda activate tower-vision
+python -m pip install -r requirements-gpu.txt
+```
+
+Essa trilha usa `torch 2.7.1` com wheels CUDA `12.6`. A máquina alvo precisa ter driver NVIDIA compatível; nesta máquina de desenvolvimento o wheel CUDA está instalado, mas `torch.cuda.is_available()` estava `False`, então a disponibilidade final de GPU continua dependente do host.
+
 ## Formato de dados
 
 O formato esperado para imagens e anotações está documentado em [docs/dataset.md](docs/dataset.md). Se esse contrato mudar, atualize a documentação antes de expandir a pipeline.
