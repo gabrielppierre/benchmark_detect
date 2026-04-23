@@ -15,24 +15,20 @@ __pycache__/
 
 .dvc/cache/
 
-# Scratch local
 output/
 tmp/
 
-# Pesos e checkpoints locais
 *.pt
 *.pth
 *.ckpt
 *.onnx
 *.engine
 
-# Dados brutos e derivados regeneráveis
 data/raw/**/archive/
 data/raw/**/extracted/
 data/interim/
 data/rois/
 
-# Splits oficiais podem ficar no Git, mas não as imagens de amostra
 data/splits/**/samples/
 
 runs/**/*
