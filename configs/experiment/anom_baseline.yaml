@@ -1,0 +1,12 @@
+name: anom_baseline
+task: anomaly_detection
+train_crop_source: gt_crops
+eval_crop_sources:
+  - gt_crops
+  - pred_crops
+models:
+  - configs/anomaly/patchcore.yaml
+  - configs/anomaly/padim.yaml
+  - configs/anomaly/cutpaste.yaml
+primary_metric: score_summary
+notes: Baseline inicial legado. O protocolo oficial atual é configs/experiment/anom_benchmark_fair_v1.yaml.

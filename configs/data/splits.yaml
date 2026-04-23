@@ -1,0 +1,13 @@
+seed: 42
+train_ratio: 0.7
+val_ratio: 0.15
+test_ratio: 0.15
+split_name: official_v1
+group_by: filename_time_bucket
+group_bucket_seconds: 30
+group_ordering: chronological
+samples_per_split: 3
+uncertainties:
+  - O dataset atual parece vir de uma única sequência contínua de captura.
+  - O agrupamento temporal reduz vazamento, mas não garante independência sem metadados explícitos de torre, voo ou campanha.
+  - As fronteiras entre partições ainda podem separar frames próximos no tempo em torno do limite entre buckets.

@@ -1,0 +1,17 @@
+name: patchcore
+display_name: PatchCore
+family: anomaly
+backend: anomalib
+fit_mode: fit_once
+input_size: 256
+feature_extractor: resnet18
+backbone: resnet18
+layers:
+  - layer2
+  - layer3
+coreset_sampling_ratio: 0.01
+num_neighbors: 9
+pre_trained: true
+batch_size: 8
+num_workers: 4
+notes: PatchCore executado via anomalib com backbone resnet18 e contrato canônico de métricas por ROI.

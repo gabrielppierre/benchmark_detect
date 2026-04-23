@@ -1,0 +1,17 @@
+name: padim
+display_name: PaDiM
+family: anomaly
+backend: anomalib
+fit_mode: fit_once
+input_size: 256
+feature_extractor: resnet18
+backbone: resnet18
+layers:
+  - layer1
+  - layer2
+  - layer3
+pre_trained: true
+n_features: 100
+batch_size: 8
+num_workers: 4
+notes: PaDiM executado via anomalib com backbone resnet18 e avaliação padronizada por ROI.

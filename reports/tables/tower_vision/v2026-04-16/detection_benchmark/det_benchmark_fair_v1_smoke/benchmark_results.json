@@ -1,0 +1,73 @@
+{
+  "benchmark_name": "det_benchmark_fair_v1_smoke",
+  "dataset": {
+    "name": "tower_vision",
+    "version": "v2026-04-16"
+  },
+  "split_name": "official_v1",
+  "seed_results": [
+    {
+      "model_name": "yolo11s",
+      "display_name": "YOLO11s",
+      "seed": 42,
+      "status": "completed",
+      "best_epoch": 1,
+      "best_checkpoint_path": "runs/detectors/tower_vision/v2026-04-16/det_benchmark_fair_v1_smoke/yolo11s/seed_42/weights/best.pt",
+      "last_checkpoint_path": "runs/detectors/tower_vision/v2026-04-16/det_benchmark_fair_v1_smoke/yolo11s/seed_42/weights/last.pt",
+      "train_log_path": "runs/detectors/tower_vision/v2026-04-16/det_benchmark_fair_v1_smoke/yolo11s/seed_42/train.log",
+      "epoch_metrics_path": "runs/detectors/tower_vision/v2026-04-16/det_benchmark_fair_v1_smoke/yolo11s/seed_42/epoch_metrics.csv",
+      "val_best_metrics": {
+        "mAP50": 0.8198296803898495,
+        "mAP50_95": 0.3932675981803056,
+        "precision": 0.7556526268393053,
+        "recall": 0.8057427884734836,
+        "AP50_torre": 0.8910937972269621,
+        "AP50_95_torre": 0.6142279320418754,
+        "Recall_torre": 0.8588235294117647,
+        "Precision_torre": 0.7473533513680032,
+        "AP50_isoladores": 0.7485655635527368,
+        "AP50_95_isoladores": 0.1723072643187357,
+        "Recall_isoladores": 0.7526620475352025,
+        "Precision_isoladores": 0.7639519023106074
+      },
+      "test_metrics": {
+        "mAP50": 0.9801518866800064,
+        "mAP50_95": 0.5220302821891146,
+        "precision": 0.964734403466188,
+        "recall": 0.9355341401702091,
+        "AP50_torre": 0.9851385438075589,
+        "AP50_95_torre": 0.7904824360372198,
+        "Recall_torre": 0.9696969696969697,
+        "Precision_torre": 0.9864083884259578,
+        "AP50_isoladores": 0.9751652295524539,
+        "AP50_95_isoladores": 0.2535781283410095,
+        "Recall_isoladores": 0.9013713106434483,
+        "Precision_isoladores": 0.9430604185064182
+      },
+      "notes": [
+        "ultralytics backend executed with custom trainer fitness tied to val_map50_95"
+      ]
+    }
+  ],
+  "aggregated_results": [
+    {
+      "model_name": "yolo11s",
+      "display_name": "YOLO11s",
+      "num_completed_seeds": 1,
+      "num_total_seeds": 1,
+      "val_map50_95_mean": 0.3932675981803056,
+      "val_map50_95_std": 0.0,
+      "val_AP50_95_isoladores_mean": 0.1723072643187357,
+      "val_AP50_95_isoladores_std": 0.0,
+      "val_Recall_isoladores_mean": 0.7526620475352025,
+      "val_Recall_isoladores_std": 0.0,
+      "test_map50_95_mean": 0.5220302821891146,
+      "test_map50_95_std": 0.0,
+      "test_AP50_95_isoladores_mean": 0.2535781283410095,
+      "test_AP50_95_isoladores_std": 0.0,
+      "test_Recall_isoladores_mean": 0.9013713106434483,
+      "test_Recall_isoladores_std": 0.0
+    }
+  ],
+  "selected_detector_for_anomaly": null
+}

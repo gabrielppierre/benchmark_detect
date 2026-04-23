@@ -1,0 +1,2 @@
+model_name,display_name,num_completed_seeds,num_total_seeds,val_map50_95_mean,val_map50_95_std,val_AP50_95_isoladores_mean,val_AP50_95_isoladores_std,val_Recall_isoladores_mean,val_Recall_isoladores_std,test_map50_95_mean,test_map50_95_std,test_AP50_95_isoladores_mean,test_AP50_95_isoladores_std,test_Recall_isoladores_mean,test_Recall_isoladores_std
+yolo11s,YOLO11s,1,1,0.3932675981803056,0.0,0.1723072643187357,0.0,0.7526620475352025,0.0,0.5220302821891146,0.0,0.2535781283410095,0.0,0.9013713106434483,0.0

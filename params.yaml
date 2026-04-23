@@ -1,0 +1,62 @@
+dataset:
+  name: tower_vision
+  version: v2026-04-16
+  source_name: imagens_torres_300
+  annotation_format: coco
+
+paths:
+  raw_dataset_version_dir: data/raw/tower_vision/v2026-04-16
+  raw_dataset_root: data/raw/tower_vision/v2026-04-16/extracted/imagens_torres_300
+  raw_archive_path: data/raw/tower_vision/v2026-04-16/archive/imagens_torres_300.zip
+  raw_manifest_path: data/raw/tower_vision/v2026-04-16/manifest.yaml
+  raw_images_dir: data/raw/tower_vision/v2026-04-16/extracted/imagens_torres_300/images/default
+  raw_annotations_path: data/raw/tower_vision/v2026-04-16/extracted/imagens_torres_300/annotations/instances_default.json
+  cleaned_images_manifest: data/interim/tower_vision/v2026-04-16/cleaned/images.json
+  cleaned_annotations_manifest: data/interim/tower_vision/v2026-04-16/cleaned/annotations.json
+  validation_report: data/interim/tower_vision/v2026-04-16/cleaned/validation_report.json
+  splits_path: data/splits/tower_vision/v2026-04-16/splits.json
+  detector_run_dir: runs/detectors/tower_vision/v2026-04-16/baseline
+  detector_predictions_path: runs/detectors/tower_vision/v2026-04-16/baseline/predictions.json
+  gt_crops_dir: data/rois/tower_vision/v2026-04-16/gt_crops
+  pred_crops_dir: data/rois/tower_vision/v2026-04-16/pred_crops
+  anomaly_run_dir: runs/anomaly/tower_vision/v2026-04-16/baseline
+  anomaly_benchmark_run_root: runs/anomaly/tower_vision/v2026-04-16/anom_benchmark_fair_v1
+  anomaly_benchmark_report_root: reports/tables/tower_vision/v2026-04-16/anomaly_benchmark/anom_benchmark_fair_v1
+  anomaly_benchmark_report: reports/tables/tower_vision/v2026-04-16/anomaly_benchmark/anom_benchmark_fair_v1/benchmark_report.md
+  anomaly_benchmark_results_csv: reports/tables/tower_vision/v2026-04-16/anomaly_benchmark/anom_benchmark_fair_v1/benchmark_results.csv
+  anomaly_benchmark_results_json: reports/tables/tower_vision/v2026-04-16/anomaly_benchmark/anom_benchmark_fair_v1/benchmark_results.json
+  evaluation_report: reports/tables/tower_vision/v2026-04-16/pipeline_metrics.json
+  benchmark_report: reports/tables/tower_vision/v2026-04-16/detection_benchmark/det_benchmark_fair_v1/benchmark_report.md
+  synthetic_root: data/synthetic/tower_vision/v2026-04-16
+  synthetic_anomaly_pack_dir: data/synthetic/tower_vision/v2026-04-16/anomaly_controlled_v1
+  synthetic_anomaly_manifest: data/synthetic/tower_vision/v2026-04-16/anomaly_controlled_v1/manifest.yaml
+  synthetic_anomaly_records: data/synthetic/tower_vision/v2026-04-16/anomaly_controlled_v1/records.csv
+
+data:
+  image_extensions:
+    - .jpg
+    - .jpeg
+    - .png
+  annotation_label: isoladores
+  annotation_format: coco
+  split_seed: 42
+  train_ratio: 0.7
+  val_ratio: 0.15
+
+detector:
+  name: yolo
+  confidence_threshold: 0.25
+  iou_threshold: 0.5
+
+crop:
+  padding: 0
+  source: both
+
+anomaly:
+  name: patchcore
+  crop_source: gt_crops
+  threshold: 0.5
+  benchmark_name: anom_benchmark_fair_v1
+
+evaluation:
+  detection_iou_threshold: 0.5

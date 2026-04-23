@@ -1,0 +1,98 @@
+name: anom_benchmark_fair_v1
+task: anomaly_detection
+dataset:
+  split_name: official_v1
+  roi_label: isoladores
+  training_source: gt_crops
+  synthetic_pack: anomaly_controlled_v1
+  accepted_only: true
+  current_track: synthetic_gt_crops
+  future_tracks:
+    - synthetic_pred_crops
+ranking:
+  primary_metric: test_roi_auroc
+  secondary_metric: test_roi_auprc
+  operating_metric: val_f1
+  operating_tiebreaker: val_precision
+  operating_recall_floor: 0.90
+training:
+  train_only_normal: true
+  synthetic_in_training: false
+  input_size: 256
+  normalization: imagenet
+  feature_extractor: resnet18
+  num_seeds: 3
+  seeds: [42, 52, 62]
+  iterative_controls:
+    enabled_for:
+      - cutpaste
+    max_epochs: 100
+    validate_every: 1
+    save_best: true
+    save_last: true
+    early_stopping: true
+    monitor: val_roi_auroc
+    mode: max
+    patience: 20
+    min_epochs: 25
+evaluation:
+  calibration_split: val
+  test_split: test
+  normal_reference:
+    val: gt_crops from official val split
+    test: gt_crops from official test split
+  anomaly_reference:
+    val: accepted synthetic records with source_split=val
+    test: accepted synthetic records with source_split=test
+  mandatory_metrics:
+    threshold_free:
+      - roi_auroc
+      - roi_auprc
+    thresholded:
+      - f1
+      - precision
+      - recall
+      - accuracy
+      - tp
+      - tn
+      - fp
+      - fn
+  stratified_metrics:
+    - generator_family
+    - anomaly_type
+    - severity
+  optional_spatial_metrics:
+    - pixel_auroc
+    - pixel_auprc
+    - mask_iou
+    - dice
+models:
+  - configs/anomaly/patchcore.yaml
+  - configs/anomaly/padim.yaml
+  - configs/anomaly/cutpaste.yaml
+outputs:
+  run_root: runs/anomaly/<dataset>/<version>/<benchmark>/<model>/seed_<seed>/
+  per_seed_files:
+    - model.json
+    - train_history.csv
+    - threshold_selection.json
+    - val_scores.csv
+    - test_scores.csv
+    - val_metrics.json
+    - test_metrics.json
+    - generator_breakdown.csv
+    - anomaly_type_breakdown.csv
+    - severity_breakdown.csv
+  optional_visual_files:
+    - val_examples.md
+    - test_examples.md
+    - anomaly_maps/
+  aggregate_root: reports/tables/<dataset>/<version>/anomaly_benchmark/<benchmark>/
+  aggregate_files:
+    - benchmark_results.csv
+    - benchmark_results.json
+    - benchmark_report.md
+notes: >
+  Benchmark oficial v1 para anomaly detection em ROIs de isoladores. A trilha oficial
+  atual usa apenas GT crops normais do split congelado e anomalias sintéticas aceitas
+  do pack anomaly_controlled_v1. A trilha com pred_crops fica como extensão futura.

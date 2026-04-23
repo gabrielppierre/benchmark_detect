@@ -1,0 +1,8 @@
+name: fasterrcnn
+family: detector
+backend: placeholder
+entrypoint: towervision.detectors
+image_size: 1024
+batch_size: 4
+confidence_threshold: 0.25
+notes: Slot para integrar Faster R-CNN com outputs comparáveis aos demais detectores.

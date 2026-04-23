@@ -1,0 +1,14 @@
+name: tower_vision
+version: v2026-04-16
+source_name: imagens_torres_300
+source_archive: data/raw/tower_vision/v2026-04-16/archive/imagens_torres_300.zip
+dataset_root: data/raw/tower_vision/v2026-04-16/extracted/imagens_torres_300
+images_dir: data/raw/tower_vision/v2026-04-16/extracted/imagens_torres_300/images/default
+annotations_path: data/raw/tower_vision/v2026-04-16/extracted/imagens_torres_300/annotations/instances_default.json
+annotation_format: coco
+num_images: 300
+num_annotations: 1495
+classes:
+  - torre
+  - isoladores
+notes: Snapshot bruto recebido em zip e extraido sem conversao.

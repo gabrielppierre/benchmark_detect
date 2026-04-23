@@ -1,0 +1,40 @@
+.venv/
+.env
+.env.*
+!.env.example
+.codex/
+.idea/
+.vscode/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+*.pyc
+.DS_Store
+
+.dvc/cache/
+
+# Scratch local
+output/
+tmp/
+
+# Pesos e checkpoints locais
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.engine
+
+# Dados brutos e derivados regeneráveis
+data/raw/**/archive/
+data/raw/**/extracted/
+data/interim/
+data/rois/
+
+# Splits oficiais podem ficar no Git, mas não as imagens de amostra
+data/splits/**/samples/
+
+runs/**/*
+
+reports/figures/**/*
+!reports/benchmark_v1.md

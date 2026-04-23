@@ -1,0 +1,14 @@
+dataset_name: tower_vision
+dataset_version: v2026-04-16
+dataset_root: data/raw/tower_vision/v2026-04-16/extracted/imagens_torres_300
+dataset_manifest_path: data/raw/tower_vision/v2026-04-16/manifest.yaml
+source_archive: data/raw/tower_vision/v2026-04-16/archive/imagens_torres_300.zip
+raw_images_dir: data/raw/tower_vision/v2026-04-16/extracted/imagens_torres_300/images/default
+raw_annotations_path: data/raw/tower_vision/v2026-04-16/extracted/imagens_torres_300/annotations/instances_default.json
+cleaned_dir: data/interim/tower_vision/v2026-04-16/cleaned
+annotation_format: coco
+default_label: isoladores
+image_extensions:
+  - .jpg
+  - .jpeg
+  - .png

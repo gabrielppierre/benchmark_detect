@@ -1,0 +1,23 @@
+pack_name: anomaly_controlled_v1
+dataset_name: tower_vision
+dataset_version: v2026-04-16
+task: controlled_synthetic_anomaly_benchmark
+source_dataset_root: data/raw/tower_vision/v2026-04-16/extracted/imagens_torres_300
+protocol:
+  generators:
+  - chatgpt
+  - gemini
+  images_per_generator: 5
+  total_target_images: 10
+  initial_roi_scope:
+  - isoladores
+  future_roi_scopes:
+  - torre
+  source_splits:
+  - val
+  - test
+rules:
+- Do not move or overwrite the raw dataset.
+- Do not mix synthetic files into data/raw.
+- Reference source images in records.csv instead of copying the originals.
+- Store every generated image with prompt and optional mask for traceability.

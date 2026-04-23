@@ -1,0 +1,23 @@
+name: tower-vision
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - gxx_linux-64
+  - pyyaml
+  - pandas
+  - pillow
+  - matplotlib
+  - numpy
+  - rich
+  - pytest
+  - pip:
+      - accelerate>=1.13,<2
+      - anomalib>=2.2,<3
+      - pycocotools>=2.0.11,<3
+      - torch>=2.7,<2.8
+      - torchvision>=0.22,<0.23
+      - transformers>=4.57,<5
+      - ultralytics>=8.4,<9
+      - yolox @ git+https://github.com/Megvii-BaseDetection/YOLOX.git

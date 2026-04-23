@@ -1,0 +1,38 @@
+{
+  "summary_rows": [
+    {
+      "model": "padim",
+      "n": 30,
+      "mass_in_mask_mean": 0.053375137253522255,
+      "mass_gain_vs_area_mean": 12.691743165578483,
+      "peak_in_mask_rate": 0.5333333333333333,
+      "iou_top5_mean": 0.13163160083932995,
+      "dice_top5_mean": 0.21421136125487125,
+      "mean_lift_in_vs_out_mean": 13.951277612773604
+    },
+    {
+      "model": "patchcore",
+      "n": 30,
+      "mass_in_mask_mean": 0.01627909885017287,
+      "mass_gain_vs_area_mean": 3.253171679194504,
+      "peak_in_mask_rate": 0.43333333333333335,
+      "iou_top5_mean": 0.07924874888068227,
+      "dice_top5_mean": 0.13724576843063468,
+      "mean_lift_in_vs_out_mean": 3.309980605996264
+    },
+    {
+      "model": "cutpaste",
+      "n": 30,
+      "mass_in_mask_mean": 0.010851404080353887,
+      "mass_gain_vs_area_mean": 2.387531749480705,
+      "peak_in_mask_rate": 0.0,
+      "iou_top5_mean": 0.033540779400746935,
+      "dice_top5_mean": 0.05814345355632003,
+      "mean_lift_in_vs_out_mean": 2.411411091992882
+    }
+  ],
+  "csv_path": "reports/tables/tower_vision/v2026-04-16/anomaly_benchmark/anom_benchmark_fair_v1/localization_comparison_test.csv",
+  "summary_csv_path": "reports/tables/tower_vision/v2026-04-16/anomaly_benchmark/anom_benchmark_fair_v1/localization_comparison_summary.csv",
+  "by_type_csv_path": "reports/tables/tower_vision/v2026-04-16/anomaly_benchmark/anom_benchmark_fair_v1/localization_comparison_by_anomaly_type.csv",
+  "side_by_side_sheet_path": "reports/figures/tower_vision/v2026-04-16/anomaly_benchmark/anom_benchmark_fair_v1/localization_review/seed_52_localization_comparison_sheet.png"
+}

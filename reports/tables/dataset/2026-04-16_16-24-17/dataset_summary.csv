@@ -1,0 +1,16 @@
+section,metric,value
+source,path,data/raw/tower_vision/v2026-04-16/extracted/imagens_torres_300
+source,kind,directory
+inventory,num_images,300
+inventory,num_annotations,1495
+inventory,num_annotation_files,1
+inventory,image_extensions,.jpg
+format,primary,COCO
+stats,min_resolution,5280x3956
+stats,max_resolution,5280x3956
+stats,mean_resolution,5280.00x3956.00
+bbox,width_mean,187.2031
+bbox,height_mean,744.9889
+bbox,relative_area_mean,0.012578
+class_counts,torre,591
+class_counts,isoladores,904

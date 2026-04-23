@@ -1,0 +1,132 @@
+stages:
+  prepare_dataset:
+    cmd: python scripts/prepare_dataset.py
+    deps:
+      - scripts/prepare_dataset.py
+      - src/towervision/data/load.py
+      - src/towervision/data/validate.py
+      - src/towervision/utils/io.py
+      - configs/data/base.yaml
+      - params.yaml
+    params:
+      - paths
+      - data
+    outs:
+      - data/interim/tower_vision/v2026-04-16/cleaned/images.json
+      - data/interim/tower_vision/v2026-04-16/cleaned/annotations.json
+      - data/interim/tower_vision/v2026-04-16/cleaned/validation_report.json
+
+  make_splits:
+    cmd: python scripts/make_splits.py
+    deps:
+      - scripts/make_splits.py
+      - src/towervision/data/load.py
+      - src/towervision/data/splits.py
+      - src/towervision/utils/viz.py
+      - src/towervision/utils/io.py
+      - configs/data/splits.yaml
+      - params.yaml
+      - data/interim/tower_vision/v2026-04-16/cleaned/images.json
+      - data/interim/tower_vision/v2026-04-16/cleaned/annotations.json
+    params:
+      - data.split_seed
+      - data.train_ratio
+      - data.val_ratio
+      - paths.splits_path
+    outs:
+      - data/splits/tower_vision/v2026-04-16
+
+  train_detector:
+    cmd: python scripts/train_detector.py
+    deps:
+      - scripts/train_detector.py
+      - src/towervision/detectors/train.py
+      - src/towervision/utils/io.py
+      - configs/experiment/det_baseline.yaml
+      - params.yaml
+      - data/interim/tower_vision/v2026-04-16/cleaned/images.json
+      - data/interim/tower_vision/v2026-04-16/cleaned/annotations.json
+      - data/splits/tower_vision/v2026-04-16/splits.json
+    params:
+      - detector
+      - paths.detector_run_dir
+    outs:
+      - runs/detectors/tower_vision/v2026-04-16/baseline/model.json
+
+  infer_detector:
+    cmd: python scripts/infer_detector.py
+    deps:
+      - scripts/infer_detector.py
+      - src/towervision/data/load.py
+      - src/towervision/detectors/infer.py
+      - src/towervision/utils/io.py
+      - params.yaml
+      - data/interim/tower_vision/v2026-04-16/cleaned/images.json
+      - data/splits/tower_vision/v2026-04-16/splits.json
+      - runs/detectors/tower_vision/v2026-04-16/baseline/model.json
+    params:
+      - detector.confidence_threshold
+      - paths.detector_predictions_path
+    outs:
+      - runs/detectors/tower_vision/v2026-04-16/baseline/predictions.json
+
+  crop_rois:
+    cmd: python scripts/crop_rois.py --source both
+    deps:
+      - scripts/crop_rois.py
+      - src/towervision/data/load.py
+      - src/towervision/pipelines/crop_from_gt.py
+      - src/towervision/pipelines/crop_from_pred.py
+      - src/towervision/utils/io.py
+      - params.yaml
+      - data/interim/tower_vision/v2026-04-16/cleaned/images.json
+      - data/interim/tower_vision/v2026-04-16/cleaned/annotations.json
+      - runs/detectors/tower_vision/v2026-04-16/baseline/predictions.json
+    params:
+      - crop
+      - paths.gt_crops_dir
+      - paths.pred_crops_dir
+    outs:
+      - data/rois/tower_vision/v2026-04-16/gt_crops
+      - data/rois/tower_vision/v2026-04-16/pred_crops
+
+  train_anomaly:
+    cmd: python scripts/train_anomaly.py
+    deps:
+      - scripts/train_anomaly.py
+      - src/towervision/anomaly/train.py
+      - src/towervision/utils/io.py
+      - configs/experiment/anom_baseline.yaml
+      - params.yaml
+      - data/rois/tower_vision/v2026-04-16/gt_crops
+      - data/rois/tower_vision/v2026-04-16/pred_crops
+    params:
+      - anomaly
+      - paths.anomaly_run_dir
+    outs:
+      - runs/anomaly/tower_vision/v2026-04-16/baseline/model.json
+
+  evaluate_pipeline:
+    cmd: python scripts/evaluate_pipeline.py
+    deps:
+      - scripts/evaluate_pipeline.py
+      - src/towervision/anomaly/infer.py
+      - src/towervision/anomaly/metrics.py
+      - src/towervision/data/load.py
+      - src/towervision/detectors/metrics.py
+      - src/towervision/pipelines/end_to_end.py
+      - src/towervision/utils/io.py
+      - params.yaml
+      - data/interim/tower_vision/v2026-04-16/cleaned/annotations.json
+      - data/rois/tower_vision/v2026-04-16/gt_crops
+      - data/rois/tower_vision/v2026-04-16/pred_crops
+      - runs/detectors/tower_vision/v2026-04-16/baseline/predictions.json
+      - runs/anomaly/tower_vision/v2026-04-16/baseline/model.json
+    params:
+      - evaluation
+      - anomaly.threshold
+      - paths.evaluation_report
+      - paths.benchmark_report
+    outs:
+      - reports/tables/tower_vision/v2026-04-16/pipeline_metrics.json
+      - reports/tower_vision/v2026-04-16/benchmark_v1.md

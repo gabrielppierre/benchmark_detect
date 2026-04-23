@@ -1,0 +1,11 @@
+name: det_baseline
+task: detection
+data_config: configs/data/base.yaml
+split_config: configs/data/splits.yaml
+models:
+  - configs/detector/yolo.yaml
+  - configs/detector/yolox.yaml
+  - configs/detector/fasterrcnn.yaml
+  - configs/detector/rtdetr.yaml
+primary_metric: f1@0.5iou
+notes: Baseline inicial para benchmark de detectores de isoladores.

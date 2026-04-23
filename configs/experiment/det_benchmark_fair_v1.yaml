@@ -1,0 +1,64 @@
+name: det_benchmark_fair_v1
+task: detection
+split_name: official_v1
+classes:
+  - torre
+  - isoladores
+critical_class: isoladores
+ranking:
+  overall_metric: test_map50_95
+  critical_metric: test_AP50_95_isoladores
+  selection_metric: val_AP50_95_isoladores
+  selection_tiebreaker: val_map50_95
+training:
+  img_size: 640
+  max_epochs: 100
+  validate_every: 1
+  save_best: true
+  save_last: true
+  early_stopping: true
+  monitor: val_map50_95
+  mode: max
+  patience: 20
+  min_epochs: 25
+  num_seeds: 3
+  seeds: [42, 52, 62]
+  recall_floor_isoladores: 0.850
+  augmentations:
+    preset: common_light
+    horizontal_flip: 0.5
+    scale_jitter: [0.9, 1.1]
+    color_jitter: light
+models:
+  - name: yolo11s
+    display_name: YOLO11s
+    backend: ultralytics
+    family: yolo
+    pretrained_weights: yolo11s.pt
+    batch_size: 8
+    num_workers: 4
+    notes: Trilha principal Ultralytics com pesos COCO.
+  - name: yolox_s
+    display_name: YOLOX-s
+    backend: yolox
+    family: yolox
+    pretrained_weights: yolox_s.pth
+    batch_size: 8
+    num_workers: 4
+    notes: Trilha principal YOLOX com pesos COCO oficiais.
+  - name: fasterrcnn_resnet50_fpn_v2
+    display_name: Faster R-CNN ResNet50-FPN v2
+    backend: torchvision
+    family: fasterrcnn
+    pretrained_weights: FasterRCNN_ResNet50_FPN_V2_Weights.COCO_V1
+    batch_size: 2
+    num_workers: 4
+    notes: Trilha principal TorchVision com pesos COCO.
+  - name: rtdetr_r18
+    display_name: RT-DETR-R18
+    backend: transformers
+    family: rtdetr
+    pretrained_weights: PekingU/rtdetr_r18vd
+    batch_size: 4
+    num_workers: 4
+    notes: Trilha principal RT-DETR-R18 com checkpoint COCO, sem vantagem extra de Objects365.

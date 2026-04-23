@@ -1,0 +1,8 @@
+name: yolox
+family: detector
+backend: placeholder
+entrypoint: towervision.detectors
+image_size: 1024
+batch_size: 8
+confidence_threshold: 0.25
+notes: Slot para integrar YOLOX mantendo o mesmo contrato de treino e inferência.

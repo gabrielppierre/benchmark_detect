@@ -1,0 +1,12 @@
+name: cutpaste
+display_name: CutPaste
+family: anomaly
+backend: repo_cutpaste
+fit_mode: iterative
+input_size: 256
+feature_extractor: resnet18
+batch_size: 16
+num_workers: 4
+learning_rate: 0.0001
+weight_decay: 0.00001
+notes: Implementação local de CutPaste com encoder ResNet18 e seleção de checkpoint por val_roi_auroc.

@@ -1,0 +1,43 @@
+{
+  "train": {
+    "num_images": 208,
+    "num_annotations": 1035,
+    "class_counts": {
+      "torre": 407,
+      "isoladores": 628
+    },
+    "num_groups": 5,
+    "group_ids": [
+      "20250911_1049_30_30s",
+      "20250911_1050_00_30s",
+      "20250911_1050_30_30s",
+      "20250911_1051_00_30s",
+      "20250911_1051_30_30s"
+    ]
+  },
+  "val": {
+    "num_images": 43,
+    "num_annotations": 214,
+    "class_counts": {
+      "isoladores": 129,
+      "torre": 85
+    },
+    "num_groups": 1,
+    "group_ids": [
+      "20250911_1052_00_30s"
+    ]
+  },
+  "test": {
+    "num_images": 49,
+    "num_annotations": 246,
+    "class_counts": {
+      "isoladores": 147,
+      "torre": 99
+    },
+    "num_groups": 2,
+    "group_ids": [
+      "20250911_1052_30_30s",
+      "20250911_1053_00_30s"
+    ]
+  }
+}
